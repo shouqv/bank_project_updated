@@ -61,7 +61,7 @@ class CheckingAccount():
             if status == "inactive" and new_balance_checking>=0:
                 file.update_row(account_id, "status" , "active")
                 CheckingAccount.overdrafts_count[account_id] = 0
-                message = "Account reactivated\n"
+                message = "Checking account reactivated\n"
             
             if flag:
                 message = message + f"The new checking balance: {new_balance_checking}"

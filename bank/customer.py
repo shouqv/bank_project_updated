@@ -32,56 +32,66 @@ class Customer():
             return True
         else:
             return False
-
-    def withdraw(self,account_id , account, amount ):
+        
+    def withdraw(self,account_id , account, amount, transfer_flag = False):
         account = account.lower()
-        if account == "checking":
-            return self.checking_account.withdraw(self.file_manager ,account_id, amount)
-        elif account == "saving":
-            return self.saving_account.withdraw(self.file_manager ,account_id , amount)
-        else:
-            raise InvalidChoiceError(f"The option:{account}, is invalid! Try again")
+        account_map = {
+        "checking": self.checking_account,
+        "saving": self.saving_account
+        } 
         
-    # def withdraw(self,account_id , account, amount ):
-    #     account = account.lower()
-    #     account_map = {
-    #     "checking": self.checking_account,
-    #     "saving": self.saving_account
-    #     } 
-        
-    #     if account not in account_map:
-    #         raise InvalidChoiceError(f"The option: {account}, is invalid! Try again")
-            
-            
-    #     before_balance = self.get_current_balance(account_id, account)
-    #     result = account_map[account].withdraw(self.file_manager, account_id, amount)
-    #     new_balance = self.get_current_balance(account_id, account)
+        if account not in account_map:
+            raise InvalidChoiceError(f"The option: {account}, is invalid! Try again")
 
-    #     # Record the transaction for both account
-    #     self.transaction.add_transaction(account_id,self.customer_greetings(account_id),f"withdraw {amount}",before_balance,account,new_balance)
+        before_balance = self.get_current_balance(account_id, account)
+        result = account_map[account].withdraw(self.file_manager, account_id, amount)
 
-    #     return result
+        # Record the transaction for both account
+        if not transfer_flag:
+            self.add_transaction(account_id,f"Withdraw {amount}",before_balance,account)
+
+        return result
             
     def deposit(self, account_id,account, amount):
         account = account.lower()
-        if account == "checking":
-            return self.checking_account.deposit(self.file_manager ,account_id , amount)
-        elif account == "saving":
-            return self.saving_account.deposit(self.file_manager ,account_id, amount)
-        else:
-            raise InvalidChoiceError(f"The option:{account}, is invalid! Try again")
+        account_map = {
+        "checking": self.checking_account,
+        "saving": self.saving_account}
+        
+
+        if account not in account_map:
+            raise InvalidChoiceError(f"The option: {account}, is invalid! Try again")
+
+        before_balance = self.get_current_balance(account_id, account)
+
+        result = account_map[account].deposit(self.file_manager, account_id, amount)
+
+        self.add_transaction(account_id, f"Deposit {amount}", before_balance, account)
+
+        return result
             
     
     def transfer(self,account_id , choice, amount, from_account=None, other_customer=None):
         #
         if choice == "c" and (from_account !="checking" and from_account != "saving"): 
             raise InvalidChoiceError(f"The account:{from_account}, is invalid! Try again")
-        
+        before_checking_balance = 0
+        before_saving_balance = 0
+        if choice == "a" or choice == "b":
+            before_checking_balance = self.get_current_balance(account_id,"checking")
+            before_saving_balance = self.get_current_balance(account_id,"saving")
         match choice:
             case "a":
-                return self.saving_account.transfer(self.file_manager,account_id,self.checking_account,amount)
+                result = self.saving_account.transfer(self.file_manager,account_id,self.checking_account,amount)
+                self.add_transaction(account_id,f"Transfer {amount} out",before_checking_balance,"checking")
+                self.add_transaction(account_id,f"Transfer {amount} in",before_saving_balance,"saving",True)
+                return result
+            
             case "b":
-                return self.checking_account.transfer(self.file_manager,account_id,self.saving_account,amount)
+                result = self.checking_account.transfer(self.file_manager,account_id,self.saving_account,amount)
+                self.add_transaction(account_id,f"Transfer {amount} out",before_saving_balance,"saving")
+                self.add_transaction(account_id,f"Transfer {amount} in",before_checking_balance,"checking",True)
+                return result
             case "c":
                 if not from_account or not other_customer:
                     raise ValueError("the account to transfer from and the id of the other customer must be provided for this choice")
@@ -91,9 +101,15 @@ class Customer():
                 
                 
                 if other_customer != account_id:
-                    result = self.withdraw(account_id , from_account, amount)
+                    before_user_balance = self.get_current_balance(account_id,from_account)
+                    before_other_user_balance = self.get_current_balance(other_customer,"checking")
+                    result = self.withdraw(account_id , from_account, amount,True)
                     self.checking_account.deposit(self.file_manager ,other_customer,amount, False)
-                return result
+                    self.add_transaction(account_id, f"Transfer {amount} to ID: {other_customer}", before_user_balance, from_account)
+                    self.add_transaction(other_customer, f"Transfer {amount} from ID: {account_id}", before_other_user_balance, from_account)
+                    return result
+                else:
+                    raise ValueError("You cant transfer to your account using this option, please refer back to choice:a/b")
             case _:
                 raise InvalidChoiceError(f"The option:{choice}, is invalid! Try again")
             
@@ -130,4 +146,9 @@ class Customer():
         except TypeError:
             raise TypeError(message)
     
-    
+    def add_transaction(self,account_id,operation_detail,before_balance,affected_account,transfer_flag = False):
+            name = self.customer_greetings(account_id)
+            new_balance = self.get_current_balance(account_id,affected_account)
+            self.transaction.add_transaction(account_id,name,operation_detail,before_balance,affected_account,new_balance,transfer_flag)
+        
+            
