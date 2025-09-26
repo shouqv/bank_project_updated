@@ -92,7 +92,7 @@ class FileManagement():
                         row[f"{key}"] = int(value)
                         continue
                     if self.is_number(value):
-                        row[f"{key}"] = int(value)
+                        row[f"{key}"] = float(value)
 
 
 

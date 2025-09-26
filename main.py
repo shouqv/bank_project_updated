@@ -5,7 +5,7 @@ customer = Customer("data/bank.csv")
 print("welcome to the bank")
 
 while True:
-    print("1) Add customer  2) Login 3) Exit")
+    print("1) Add customer  2) Login 3) Bless a customer 4) Exit")
     choice = input("Choice: ")
     try:
         match choice:
@@ -109,6 +109,8 @@ while True:
                 else:
                     print("Password incorrect!")
             case "3":
+                print(customer.least_3_customer_reward())
+            case "4":
                 break
             case _:
                 print("invalid option")

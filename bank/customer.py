@@ -3,7 +3,7 @@ from .checking_account import CheckingAccount
 from .saving_account import SavingAccount
 from .custome_exceptions import AccountIsNoneError,InvalidChoiceError
 from .transactions import Transaction
-import re
+import random
 
 class Customer():
     
@@ -203,4 +203,44 @@ class Customer():
                     f.write(str(values) + ", ")
                 f.write("\n")             
             
+    
+    def least_3_customer_reward(self):
+        # decided to gift the poor :)
+        customers = []
+        for row in self.file_manager.data_list:
+            customer_info = []
+            sum = 0
+            for key , value in row.items():
+                if key == "account_id":
+                    customer_info.append(value)
+                if key == "balance_checking":
+                    if str(value).lower() != "none":
+                        sum += value
+                if key == "balance_savings":
+                    if str(value).lower() != "none":
+                        sum += value   
+            customer_info.append(sum)
+            customers.append(customer_info)
             
+        # crediting https://pythonguides.com/sort-a-list-of-lists-in-python/
+
+        customers.sort(key=lambda x: x[1])
+        
+        if len(customers) > 3:
+            customers = customers[:3] #taking top 3
+
+        message= "The customers with leaset combined balance:"
+        for i in range(len(customers)):
+            message += f"\n{i+1}-{self.customer_greetings(customers[i][0])}, ID:{customers[i][0]}, Combined balance: {customers[i][1]}"
+            
+        # crediting https://www.w3schools.com/python/gloss_python_random_number.asp
+        # to choose randomly:
+        winner = customers[random.randrange(0, len(customers))]
+        message += f"\n\nThe winner, chosen randomly is: {self.customer_greetings(winner[0])}"
+        winner_customer_before_balance= self.get_current_balance(winner[0],"checking")
+        self.checking_account.deposit(self.file_manager,winner[0],100,False)
+        self.add_transaction(winner[0],"Deposite a gift",winner_customer_before_balance,"checking")
+        return message
+        
+
+        

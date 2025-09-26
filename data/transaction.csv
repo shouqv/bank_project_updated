@@ -1,9 +1,1 @@
 account_id,operation_id,name,operation_detail,time,before_balance,affected_account,new_balance
-10006,1,shouq almutairi,Withdraw 100.0,2025-09-26 18:53:22.412231,800,checking,700
-10006,2,shouq almutairi,Transfer 20.0 to ID: 10009,2025-09-26 18:53:58.623837,700,checking,680
-10009,1,afnan almutairi,Transfer 20.0 from ID: 10006,2025-09-26 18:53:58.624299,0,checking,20
-10006,3,shouq almutairi,Transfer out,2025-09-26 18:55:04.699034,680,checking,600
-10006,3,shouq almutairi,Transfer in,2025-09-26 18:55:04.699342,2,saving,82
-10006,4,shouq almutairi,Transfer out,2025-09-26 18:55:47.256191,82,saving,2
-10006,4,shouq almutairi,Transfer in,2025-09-26 18:55:47.256454,600,checking,680
-10008,1,omar almutairi,Deposit 90.3,2025-09-26 19:22:02.834540,896,saving,986
