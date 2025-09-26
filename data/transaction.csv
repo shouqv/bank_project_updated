@@ -1,0 +1,3 @@
+account_id,operation_id,name,operation_detail,time,before_balance,affected_account,new_balance
+10008,1,omar almutairi,withdraw 2.0,2025-09-26 17:13:50.203118,101,checking,99
+10010,1,nada almutairi,withdraw 3.0,2025-09-26 17:14:22.106037,10,saving,7
