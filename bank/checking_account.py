@@ -10,7 +10,7 @@ class CheckingAccount():
             if self.check_if_account_exist(file,account_id):
 
 
-                amount = int(amount)
+                amount = float(amount)
                 new_balance_checking = current_balance_checking - amount
 
                 if account_id not in CheckingAccount.overdrafts_count:
@@ -53,7 +53,7 @@ class CheckingAccount():
         current_balance_checking = self.get_current_checking_balance(file,account_id)
         if self.check_if_account_exist(file,account_id):
             
-            amount = int(amount)
+            amount = float(amount)
             new_balance_checking = current_balance_checking + amount
             
             message = ""

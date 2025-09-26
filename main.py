@@ -10,11 +10,19 @@ while True:
     try:
         match choice:
             case "1":
+                
                 account_id = customer.customer_generated_id()
                 print(f"The account id is: {account_id}")
                 first_name = input("Enter first name: ")
                 last_name = input("Enter last name: ")
-                password = input("Enter your password: ")
+                while True:
+                    try:
+                        password = input("Enter your password: ")
+                        customer.password_checcker(password)
+                        break
+                    except ValueError as e:
+                        print(e)
+                
                 print("Type None if you don’t want to create any of the below accounts")
                 balance_checking = input("Checking account balance: ")
                 balance_savings = input("Saving account balance: ") 
@@ -22,6 +30,7 @@ while True:
                 print("Customer added successfully.")
                 print(f"Welcome {customer.customer_greetings(account_id)}")
 
+                
 
             case "2":
                 account_id = customer.customer_entered_numbers(input("Account ID: "),"Invalid ID, please enter a number","int")

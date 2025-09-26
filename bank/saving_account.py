@@ -5,7 +5,7 @@ class SavingAccount():
         current_balance_saving = self.get_current_saving_balance(file,account_id)
         if self.check_if_account_exist(file,account_id):
 
-            amount = int(amount)
+            amount = float(amount)
             message = ""
             if amount > current_balance_saving:
                 raise OverdraftRejectedError("Cant have an overdraft of a saving account!")
@@ -23,7 +23,7 @@ class SavingAccount():
         current_balance_saving = self.get_current_saving_balance(file , account_id)
         if self.check_if_account_exist(file,account_id):
         
-            amount = int(amount)
+            amount = float(amount)
             message = ""
             new_balance_saving = current_balance_saving + amount
             if flag:
