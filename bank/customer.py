@@ -236,12 +236,12 @@ class Customer():
 
         message= "The customers with leaset combined balance:"
         for i in range(len(customers)):
-            message += f"\n{i+1}-{self.customer_greetings(customers[i][0])}, ID:{customers[i][0]}, Combined balance: {customers[i][1]}"
+            message += f"\n{i+1}-{self.customer_greetings(customers[i][0])}, ID: {customers[i][0]}, Combined balance: {customers[i][1]}"
             
         # crediting https://www.w3schools.com/python/gloss_python_random_number.asp
         # to choose randomly:
         winner = customers[random.randrange(0, len(customers))]
-        message += f"\n\nThe winner, chosen randomly is: {self.customer_greetings(winner[0])}"
+        message += f"\n\nThe winner with a 100, chosen randomly is: {self.customer_greetings(winner[0])} with ID: {winner[0]}"
         winner_customer_before_balance= self.get_current_balance(winner[0],"checking")
         self.checking_account.deposit(self.file_manager,winner[0],100,False)
         self.add_transaction(winner[0],"Deposite a 100 gift",winner_customer_before_balance,"checking")

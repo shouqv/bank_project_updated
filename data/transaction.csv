@@ -10,3 +10,4 @@ account_id,operation_id,name,operation_detail,time,before_balance,affected_accou
 10008,3,omar almutairi,Withdraw 1.0,2025-09-27 00:54:14.625285,-37.0,checking,-73.0
 10008,4,omar almutairi,Deposit 200.0,2025-09-27 01:11:48.571002,-73.0,checking,127.0
 10008,5,omar almutairi,Withdraw 128.0,2025-09-27 01:12:08.777475,127.0,checking,-36.0
+10014,1,khadija amayn,Deposite a 100 gift,2025-09-27 01:29:18.147826,100.0,checking,200.0
