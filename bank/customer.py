@@ -156,14 +156,12 @@ class Customer():
 
         # crediting https://www.geeksforgeeks.org/python/password-validation-in-python/
         SpecialSym = ['$', '@', '#', '%']
-        val = True
+        
         if len(password) < 6:
             raise ValueError("Length should be at least 6")
         if len(password) > 10:
             raise ValueError('Length should not be greater than 10')
             
-
-
         has_digit = has_upper = has_lower = has_sym = False
 
         for char in password:
@@ -184,9 +182,25 @@ class Customer():
 
         if not has_lower:
             raise ValueError('Password should have at least one lowercase letter')
-
         if not has_sym:
             raise ValueError('Password should have at least one of the symbols $@#%')
-
-
         return True
+    
+    def customer_report(self,account_id):
+        # crediting https://www.geeksforgeeks.org/python/writing-to-file-in-python/
+        with open(f"customer{account_id}_statement.txt", "w", encoding="utf-8" , newline="") as f:
+            f.write(f"Customer: {self.customer_greetings(account_id)}.\n")
+            f.write(f"Current checking balance: {self.get_current_balance(account_id ,"checking")} Current saving balance: {self.get_current_balance(account_id ,"saving")}.\n\n")
+            customer_transaction = self.transaction.return_customer_transaction(account_id)
+
+            f.write(f"Customer Transaction:\n")
+            for  row in customer_transaction:
+                for key in row:
+                    f.write(key + ", ")
+            f.write("\n")       
+            for  row in customer_transaction:
+                for key,values in row.items():
+                    f.write(str(values) + ", ")
+                f.write("\n")             
+            
+            

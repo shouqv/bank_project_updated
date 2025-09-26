@@ -40,7 +40,7 @@ while True:
                     print(f"Welcome {customer.customer_greetings(account_id)}")
                     while True:
                         try:
-                            print("1) Withdraw  2) Deposit 3) Transfer 4) Logout")
+                            print("1) Withdraw  2) Deposit 3) Transfer 4) Generate report 5) Logout")
                             selection = input("Choice: ")
                             match selection:
                                 case "1":
@@ -80,6 +80,9 @@ while True:
                                             print("Transfer completed successfully.")
 
                                 case "4":
+                                    customer.customer_report(account_id)
+                                    print(f"The report customer{account_id}_statement.txt created successfuly")
+                                case "5":
                                     break
                                 case _:
                                     print("Invalid choice")

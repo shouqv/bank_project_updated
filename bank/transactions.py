@@ -23,9 +23,13 @@ class Transaction():
         )
 
     def get_last_operation_id(self,customer_id):
-        # if not self.transaction_file.data_list: #if list is empty return 0, cyus it will be his first operation
-        #     return 0
         for row in reversed(self.transaction_file.data_list):  
             if row["account_id"] == customer_id:
                 return row["operation_id"]
         return 0
+    
+    def return_customer_transaction(self,customer_id):
+        customer_transaction = [row for row in self.transaction_file.data_list if row["account_id"] == customer_id]
+        return customer_transaction
+        
+        
