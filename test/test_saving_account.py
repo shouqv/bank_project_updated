@@ -28,12 +28,12 @@ class TestSavingAccount(unittest.TestCase):
         
     def test_withdraw(self):
         # the below expected_value shows the result of what expected to happen after i do withdraw
-        expected_value = [{"account_id": 10001, "first_name": "suresh","balance_checking": 2000, "balance_savings": 4000, "status": "active"}]
+        expected_value = [{"account_id": 10001, "first_name": "suresh","balance_checking": 2000.0, "balance_savings": 4000.0, "status": "active"}]
         # normal case
         self.assertNotEqual(self.file.data_list , expected_value) #if i didnt withdraw yet, the amount not similar 
         result = self.account.withdraw(self.file, 10001, 6000 )
         self.assertEqual(self.file.data_list , expected_value)
-        self.assertEqual(result , "The new saving balance: 4000")
+        self.assertEqual(result , "The new saving balance: 4000.0")
         
         # when trying to do an overdraft, it will raise the rejected oversdaraft error since its a saving account
         with self.assertRaises(OverdraftRejectedError):
@@ -42,7 +42,7 @@ class TestSavingAccount(unittest.TestCase):
 
         
         # testing if the account at first was chosen to be none (no account) and the user tried to do an operation
-        self.file.data_list = [{"account_id": 10001, "first_name": "suresh","balance_checking": 2000, "balance_savings": "none", "status": "active"}]
+        self.file.data_list = [{"account_id": 10001, "first_name": "suresh","balance_checking": 2000.0, "balance_savings": "none", "status": "active"}]
         with self.assertRaises(AccountIsNoneError):
             self.account.withdraw(self.file, 10001, 10 )
         
@@ -53,14 +53,14 @@ class TestSavingAccount(unittest.TestCase):
     
     def test_deposit(self):
         # testing normal case of depositing
-        expected_value = [{"account_id": 10001, "first_name": "suresh","balance_checking": 2000, "balance_savings": 13700, "status": "active"}]
+        expected_value = [{"account_id": 10001, "first_name": "suresh","balance_checking": 2000.0, "balance_savings": 13700.0, "status": "active"}]
         result = self.account.deposit(self.file ,10001 , 3700)
         self.assertEqual(self.file.data_list ,expected_value )
-        self.assertEqual(result ,"The new saving balance: 13700" )
+        self.assertEqual(result ,"The new saving balance: 13700.0" )
         
         
         # testing if his account was none, meaning wasnt created in the first place and was tryint to use it
-        self.file.data_list = [{"account_id": 10001, "first_name": "suresh","balance_checking": 2000, "balance_savings": "none", "status": "active"}]
+        self.file.data_list = [{"account_id": 10001, "first_name": "suresh","balance_checking": 2000.0, "balance_savings": "none", "status": "active"}]
         with self.assertRaises(AccountIsNoneError):
             self.account.deposit(self.file, 10001, 10 )
         
