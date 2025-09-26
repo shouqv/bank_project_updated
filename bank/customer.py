@@ -239,7 +239,7 @@ class Customer():
         message += f"\n\nThe winner, chosen randomly is: {self.customer_greetings(winner[0])}"
         winner_customer_before_balance= self.get_current_balance(winner[0],"checking")
         self.checking_account.deposit(self.file_manager,winner[0],100,False)
-        self.add_transaction(winner[0],"Deposite a gift",winner_customer_before_balance,"checking")
+        self.add_transaction(winner[0],"Deposite a 100 gift",winner_customer_before_balance,"checking")
         return message
         
 

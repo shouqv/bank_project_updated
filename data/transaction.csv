@@ -1,1 +1,8 @@
 account_id,operation_id,name,operation_detail,time,before_balance,affected_account,new_balance
+10010,1,nada almutairi,Deposite a gift,2025-09-27 00:35:29.134357,160.0,checking,260.0
+10010,2,nada almutairi,Deposite a gift,2025-09-27 00:35:43.211646,260.0,checking,360.0
+10009,1,afnan almutairi,Deposite a gift,2025-09-27 00:35:59.547969,20.0,checking,120.0
+10009,2,afnan almutairi,Deposite a gift,2025-09-27 00:36:13.160589,120.0,checking,220.0
+10009,3,afnan almutairi,Deposite a gift,2025-09-27 00:36:33.859552,220.0,checking,320.0
+10006,1,shouq almutairi,Deposite a gift,2025-09-27 00:36:53.759426,680.0,checking,780.0
+10008,1,omar almutairi,Deposite a gift,2025-09-27 00:37:03.094080,18.0,checking,118.0

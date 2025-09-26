@@ -88,7 +88,7 @@ class FileManagement():
                 for key,value in row.items():
                     if key == "password":
                         continue
-                    if key == "account_id":
+                    if key == "account_id" or key == "operation_id":
                         row[f"{key}"] = int(value)
                         continue
                     if self.is_number(value):
