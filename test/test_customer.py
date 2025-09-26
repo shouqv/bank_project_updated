@@ -24,7 +24,7 @@ class TestCustomer(unittest.TestCase):
     # i have already tested that add_row really works, so here im just testing if its been called thanks to the resource :)
     def test_add_new_customer(self):
         self.customer.file_manager.add_row = MagicMock()
-        self.customer.add_new_customer(10001,"sh","al","123",200,200)
+        self.customer.add_new_customer(10001,"sh","al","123",200,200,-100)
         self.customer.file_manager.add_row.assert_called_once()
         
     def test_login(self):

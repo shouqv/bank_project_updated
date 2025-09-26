@@ -22,10 +22,10 @@ class CheckingAccount():
                     file.update_row(account_id, "status" , "inactive")
                     raise OverdraftLimitExceededError("You have exceeded the overdraft attempt limit, account deactivated")
 
-
+                overdraft_limit = float(file.get_field_info(account_id , "overdraft_limit"))
                 if amount > current_balance_checking:
-                    if new_balance_checking - 35 < -100:
-                        raise OverdraftRejectedError("you have exceeded the balance limit of -100$ including the fee! operation canceled")
+                    if new_balance_checking - 35 < overdraft_limit:
+                        raise OverdraftRejectedError(f"you have exceeded the balance limit of {overdraft_limit} including the fee! operation canceled")
                         
                     else:
                         if account_id in CheckingAccount.overdrafts_count:

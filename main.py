@@ -24,9 +24,10 @@ while True:
                         print(e)
                 
                 print("Type None if you don’t want to create any of the below accounts")
-                balance_checking = input("Checking account balance: ")
-                balance_savings = input("Saving account balance: ") 
-                customer.add_new_customer( account_id,first_name, last_name, password, balance_checking, balance_savings)
+                balance_checking = customer.customer_entered_numbers(input("Checking account balance: "),"Please ensure to enter a valid checking balance")
+                balance_savings = customer.customer_entered_numbers(input("Saving account balance: "),"Please ensure to enter a valid saving balance")
+                overdraft_limit = input("Enter the overdraft limit (to use the default value -100 , just press Enter): ")
+                customer.add_new_customer( account_id,first_name, last_name, password, balance_checking, balance_savings,overdraft_limit)
                 print("Customer added successfully.")
                 print(f"Welcome {customer.customer_greetings(account_id)}")
 
@@ -40,7 +41,7 @@ while True:
                     print(f"Welcome {customer.customer_greetings(account_id)}")
                     while True:
                         try:
-                            print("1) Withdraw  2) Deposit 3) Transfer 4) Generate report 5) Logout")
+                            print("1) Withdraw  2) Deposit 3) Transfer 4) Change overdraft limit 5) Generate report 6) Logout")
                             selection = input("Choice: ")
                             match selection:
                                 case "1":
@@ -78,11 +79,13 @@ while True:
                                         else:
                                             print(customer.transfer(account_id, choice, amount))
                                             print("Transfer completed successfully.")
-
                                 case "4":
+                                    overdraft_limit = customer.customer_entered_numbers(input("Enter the new overdraft limit: "),"Please ensure to enter a valid number")
+                                    customer.file_manager.update_row(account_id,"overdraft_limit",overdraft_limit)
+                                case "5":
                                     customer.customer_report(account_id)
                                     print(f"The report customer{account_id}_statement.txt created successfuly")
-                                case "5":
+                                case "6":
                                     break
                                 case _:
                                     print("Invalid choice")

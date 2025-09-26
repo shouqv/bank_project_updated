@@ -14,8 +14,13 @@ class Customer():
         
         self.transaction = Transaction()
         
-    def add_new_customer(self, account_id, first_name, last_name, password, balance_checking, balance_savings):
+    def add_new_customer(self, account_id, first_name, last_name, password, balance_checking, balance_savings,overdraft_limit):  
         status = "active"
+        if str(overdraft_limit).strip() == "": #if the user have entered a space or newline
+            overdraft_limit = -100.0  
+        else:
+            self.customer_entered_numbers(overdraft_limit,"Please ensure to enter a valid numebr")
+            
         self.file_manager.add_row(
             account_id=account_id,
             first_name=first_name,
@@ -23,7 +28,7 @@ class Customer():
             password=password,
             balance_checking=balance_checking,
             balance_savings=balance_savings,
-            status=status)
+            status=status,overdraft_limit = overdraft_limit)
         
         
         
