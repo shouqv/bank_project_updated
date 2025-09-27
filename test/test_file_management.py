@@ -23,7 +23,7 @@ class TestFileManagement(unittest.TestCase):
         
         
         self.file = FileManagement(self.temp.name)
-        # print(self.file.data_list)
+
 
         
     def tearDown(self):

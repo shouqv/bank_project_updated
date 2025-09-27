@@ -6,8 +6,8 @@ class FileManagement():
         self.file_name = file_name
         self.data_list = []
         self.fields = []
-        if file_name != "": #to be able to instate it in the test class
-            self.load_data()
+        # if file_name != "": #to be able to instate it in the test class
+        self.load_data()
         
     def is_number(self, string):
         # crediting https://www.geeksforgeeks.org/python/python-check-if-given-string-is-numeric-or-not/
