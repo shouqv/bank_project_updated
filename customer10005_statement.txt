@@ -1,0 +1,10 @@
+Customer: shouq almutairi.
+Current checking balance: 28.0 Current saving balance: 8900.0.
+
+Customer Transaction:
+account_id, operation_id, name, operation_detail, time, before_balance, affected_account, new_balance, 
+10005, 1, shouq almutairi, Withdraw 101.0, 2025-09-28 00:16:12.606606, 100.0, checking, -36.0, 
+10005, 2, shouq almutairi, Withdraw 1.0, 2025-09-28 00:16:40.867971, -36.0, checking, -72.0, 
+10005, 3, shouq almutairi, Transfer 100.0 out, 2025-09-28 00:17:06.798766, 10000.0, saving, 9900.0, 
+10005, 3, shouq almutairi, Transfer 100.0 in, 2025-09-28 00:17:06.799009, -72.0, checking, 28.0, 
+10005, 4, shouq almutairi, Transfer 1000.0 to ID: 10004, 2025-09-28 00:17:46.316795, 9900.0, saving, 8900.0, 

@@ -6,7 +6,6 @@ class FileManagement():
         self.file_name = file_name
         self.data_list = []
         self.fields = []
-        # if file_name != "": #to be able to instate it in the test class
         self.load_data()
         
     def is_number(self, string):
@@ -40,13 +39,29 @@ class FileManagement():
 
 
 
-    def write_to_file(self):
+    def write_to_file(self, append_mode = False):
         # from https://www.geeksforgeeks.org/python/working-csv-files-python/
-        with open(self.file_name, 'w', newline="") as file:
+        mode = 'a' if append_mode else 'w'
+        
+        with open(self.file_name, mode, newline="") as file:
             writer = csv.DictWriter(file, fieldnames=self.fields)
-            writer.writeheader()
-            writer.writerows(self.data_list)
+            if mode == 'w':
+                writer.writeheader()
+                writer.writerows(self.data_list)
+            elif mode == "a":
+                if not self.data_list:
+                    writer.writeheader()
+                writer.writerow(self.data_list[-1])
         self.convert_data_type()
+    
+    
+    # def write_to_file(self):
+    #     # from https://www.geeksforgeeks.org/python/working-csv-files-python/
+    #     with open(self.file_name, 'w', newline="") as file:
+    #         writer = csv.DictWriter(file, fieldnames=self.fields)
+    #         writer.writeheader()
+    #         writer.writerows(self.data_list)
+    #     self.convert_data_type()
 
 
 
@@ -63,7 +78,7 @@ class FileManagement():
                 raise ValueError(f"The field {key}, is not compatible with the file field!") 
         
         self.data_list.append(kwargs)
-        self.write_to_file()
+        self.write_to_file(True)
 
     def update_row(self,customer_id, field , new_value):
         not_updated = True
