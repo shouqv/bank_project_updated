@@ -144,6 +144,8 @@ class Customer():
         try:
             if type.lower() == "int":
                 number = int(number)
+            elif str(number).lower() == "none":
+                return number
             else:
                 number = float(number)
             return number
@@ -181,10 +183,8 @@ class Customer():
 
         if not has_digit:
             raise ValueError('Password should have at least one numeral')
-
         if not has_upper:
             raise ValueError('Password should have at least one uppercase letter')
-
         if not has_lower:
             raise ValueError('Password should have at least one lowercase letter')
         if not has_sym:
@@ -215,17 +215,25 @@ class Customer():
         for row in self.file_manager.data_list:
             customer_info = []
             sum = 0
+            customer_id = 0
+            is_considered = True
             for key , value in row.items():
                 if key == "account_id":
-                    customer_info.append(value)
+                    customer_id = value
                 if key == "balance_checking":
-                    if str(value).lower() != "none":
+                    if str(value).lower() == "none":
+                        is_considered =False
+                    else: 
                         sum += value
                 if key == "balance_savings":
-                    if str(value).lower() != "none":
-                        sum += value   
-            customer_info.append(sum)
-            customers.append(customer_info)
+                    if str(value).lower() == "none":
+                        is_considered =False 
+                    else:
+                        sum += value
+            if is_considered:
+                customer_info.append(customer_id)   
+                customer_info.append(sum)
+                customers.append(customer_info)
             
         # crediting https://pythonguides.com/sort-a-list-of-lists-in-python/
 
