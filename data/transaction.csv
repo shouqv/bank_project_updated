@@ -1,16 +1,1 @@
 account_id,operation_id,name,operation_detail,time,before_balance,affected_account,new_balance
-10010,1,nada almutairi,Deposite a gift,2025-09-27 00:35:29.134357,160.0,checking,260.0
-10010,2,nada almutairi,Deposite a gift,2025-09-27 00:35:43.211646,260.0,checking,360.0
-10009,1,afnan almutairi,Deposite a gift,2025-09-27 00:35:59.547969,20.0,checking,120.0
-10009,2,afnan almutairi,Deposite a gift,2025-09-27 00:36:13.160589,120.0,checking,220.0
-10009,3,afnan almutairi,Deposite a gift,2025-09-27 00:36:33.859552,220.0,checking,320.0
-10006,1,shouq almutairi,Deposite a gift,2025-09-27 00:36:53.759426,680.0,checking,780.0
-10008,1,omar almutairi,Deposite a gift,2025-09-27 00:37:03.094080,18.0,checking,118.0
-10008,2,omar almutairi,Withdraw 120.0,2025-09-27 00:53:51.576305,118.0,checking,-37.0
-10008,3,omar almutairi,Withdraw 1.0,2025-09-27 00:54:14.625285,-37.0,checking,-73.0
-10008,4,omar almutairi,Deposit 200.0,2025-09-27 01:11:48.571002,-73.0,checking,127.0
-10008,5,omar almutairi,Withdraw 128.0,2025-09-27 01:12:08.777475,127.0,checking,-36.0
-10014,1,khadija amayn,Deposite a 100 gift,2025-09-27 01:29:18.147826,100.0,checking,200.0
-10014,2,khadija amayn,Deposite a 100 gift,2025-09-27 16:47:54.664299,200.0,checking,300.0
-10004,1,stacey abrams,Deposite a 100 gift,2025-09-27 17:53:58.505037,-100.0,checking,0.0
-10003,1,melvin gordon,Deposite a 100 gift,2025-09-27 17:55:04.166682,10.0,checking,110.0

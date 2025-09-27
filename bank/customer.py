@@ -199,9 +199,10 @@ class Customer():
             customer_transaction = self.transaction.return_customer_transaction(account_id)
 
             f.write(f"Customer Transaction:\n")
-            for  row in customer_transaction:
+            for row in customer_transaction:
                 for key in row:
                     f.write(key + ", ")
+                break
             f.write("\n")       
             for  row in customer_transaction:
                 for key,values in row.items():
