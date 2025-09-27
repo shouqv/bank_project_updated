@@ -33,6 +33,9 @@ class FileManagement():
         
 
             self.convert_data_type()
+            
+            if not self.fields:
+                raise ValueError("The file is empty! it should have at least field names")
 
 
 
@@ -80,7 +83,7 @@ class FileManagement():
 
     def get_last_row_id(self):
         if not self.data_list:
-            raise ValueError("The file is empty!")
+            return 9999
         return self.data_list[-1]["account_id"]
 
     def convert_data_type(self):
