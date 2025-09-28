@@ -1,6 +1,6 @@
 account_id,first_name,last_name,password,balance_checking,balance_savings,status,overdraft_limit
 10001,suresh,sigera,juaA@362,none,10020.0,active,-100.0
-10002,james,taylor,idh36#FGd,1500.0,10000.0,active,-100.0
-10003,melvin,gordon,uYWE73$ga1,1310.0,17.0,active,-100.0
+10002,james,taylor,idh36#FGd,0.0,0.0,active,-100.0
+10003,melvin,gordon,uYWE73$ga1,100.0,17.0,active,-100.0
 10004,stacey,abrams,DEqw3y72$,1578.0,10000.0,active,-100.0
 

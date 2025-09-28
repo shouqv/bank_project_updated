@@ -3,7 +3,7 @@
 
 ## Description
 
-This project is an updated and extended version of my original Python-based CLI banking system.
+This project is an updated and extended version of my original [Python-based bank system](https://github.com/shouqv/Bank-project).
 It was built with a focus on Test-Driven Development (TDD), modular design, and simulating real-world banking workflows.
 
 
@@ -17,7 +17,7 @@ In addition to the core features (customer management, deposits, withdrawals, tr
 
 - Automated account statement reports (.txt format)
 
-- A unique “Top 3 Customer Reward” system
+- Random bonus system for lowest balances
 
 ## Features
 - **Add New Customer**  
