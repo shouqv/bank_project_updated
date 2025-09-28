@@ -45,7 +45,7 @@ class TestCheckingAccount(unittest.TestCase):
         expected_value = [{"account_id": 10001, "first_name": "suresh","balance_checking": -45.0, "balance_savings": 10000.0, "status": "active","overdraft_limit": -100},
                             {"account_id": 10002, "first_name": "james","balance_checking": 10000.0, "balance_savings": 10000.0, "status": "active","overdraft_limit": -100}]
         self.assertEqual(self.file.data_list , expected_value)
-        self.assertEqual(result ,"Overdraft! 35 fee applied\nThe new checking balance: -45.0")
+        self.assertEqual(result ,"Overdraft! A $35 fee has been applied\nThe new checking balance: -45.0")
         
         self.account.withdraw(self.file, 10001, 10 )
         expected_value = [{"account_id": 10001, "first_name": "suresh","balance_checking": -90.0, "balance_savings": 10000.0, "status": "active","overdraft_limit": -100},

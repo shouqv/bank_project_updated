@@ -12,7 +12,7 @@ class SavingAccount():
             new_balance_saving = current_balance_saving - amount
             if flag:
                 # print(f"The new saving balance: {new_balance_saving}")
-                message = f"The new savings balance: {new_balance_saving}"
+                message = f"The new saving balance: {new_balance_saving}"
             file.update_row(account_id, "balance_savings" , new_balance_saving)
             return message
         else:
@@ -27,12 +27,12 @@ class SavingAccount():
             message = ""
             new_balance_saving = current_balance_saving + amount
             if flag:
-                message = f"The new savings balance: {new_balance_saving}"
+                message = f"The new saving balance: {new_balance_saving}"
                 
             file.update_row(account_id, "balance_savings" , new_balance_saving)
             return message
         else:
-            raise AccountIsNoneError(f"Error: The savings account with ID={account_id} has not been initiated yet", "balance_savings")
+            raise AccountIsNoneError(f"Error: The saving account with ID={account_id} has not been initiated yet", "balance_savings")
     
     def transfer(self,file ,  account_id,checking_account , amount):
         message = checking_account.withdraw(file,account_id, amount) +"\n"
