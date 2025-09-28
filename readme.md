@@ -61,6 +61,22 @@ In addition to the core features (customer management, deposits, withdrawals, tr
   - Randomly selects one to receive a $100 bonus in their checking account.
   - Outputs all three customers and the winner’s information (name + ID) to the terminal.
 
+- **Exception Handling & Custom Exceptions**
+  - Provides robust error handling for all user inputs and banking operations.  
+  - Ensures the application can handle errors gracefully without crashing.  
+  - Includes **custom domain-specific exceptions**:  
+    - **InactiveAccountError**: Raised when attempting to operate on an inactive account.  
+    - **AccountIsNoneError**: Raised when accessing an account that was not created.  
+    - **OverdraftRejectedError**: Raised when an overdraft attempt is invalid (e.g., on a savings account or exceeding allowed amount limits).  
+    - **OverdraftLimitExceededError**: Raised when overdraft attempts exceed allowed count.  
+    - **CustomerNotFoundError**: Raised when a non-existent customer ID is used.  
+    - **InvalidChoiceError**: Raised when the user selects an invalid menu option or account type.  
+  - Handles **built-in Python exceptions** with custom messages for clarity:  
+    - **ValueError**: Raised for invalid numeric inputs (e.g., non-numeric deposits/withdrawals).  
+  - Some exceptions allow **recovery actions**:  
+    - Prompting users to create a missing account (`AccountIsNoneError`).  
+    - Preventing transfers to invalid accounts while guiding the user to valid options.  
+  - Helps maintain **data integrity** and ensures **realistic banking rules** are enforced consistently across all operations.
 
 ## File Structure
 ```
