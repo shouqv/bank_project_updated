@@ -19,6 +19,8 @@ In addition to the core features (customer management, deposits, withdrawals, tr
 
 - Random bonus system for lowest balances
 
+- Custom exceptions to handle invalid inputs and errors (e.g., invalid options, incorrect IDs, empty files, invalid numeric values, inactive accounts, overdraft-related errors, etc.)
+
 ## Features
 - **Add New Customer**  
   - Can create a checking account, savings account, both, or neither  
