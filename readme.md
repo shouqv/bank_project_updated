@@ -7,7 +7,7 @@ This project is an updated and extended version of my original [Python-based ban
 It was built with a focus on Test-Driven Development (TDD), modular design, and simulating real-world banking workflows.
 
 
-In addition to the core features (customer management, deposits, withdrawals, transfers), this version introduces several new enhancements, including:
+In addition to the core features (customer management, deposits, withdrawals, transfers, exceptions handling), this version introduces several new enhancements, including:
 
 - Transaction history with detailed logging and indexing
 
@@ -19,7 +19,6 @@ In addition to the core features (customer management, deposits, withdrawals, tr
 
 - Random bonus system for lowest balances
 
-- Custom exceptions to handle invalid inputs and errors (e.g., invalid options, incorrect IDs, empty files, invalid numeric values, inactive accounts, overdraft-related errors, etc.)
 
 ## Features
 - **Add New Customer**  
