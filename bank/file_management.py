@@ -34,7 +34,7 @@ class FileManagement():
             self.convert_data_type()
             
             if not self.fields:
-                raise ValueError("The file is empty! it should have at least field names")
+                raise ValueError("The file is empty! It should have at least the field names")
 
 
 
@@ -70,12 +70,12 @@ class FileManagement():
         for data in self.data_list:
             if data["account_id"] == customer_id:
                 return data
-        raise CustomerNotFoundError(f"The id {customer_id}, does not exist")
+        raise CustomerNotFoundError(f"The ID {customer_id} does not exist")
 
     def add_row(self , **kwargs):
         for key in kwargs:
             if key not in self.fields:
-                raise ValueError(f"The field {key}, is not compatible with the file field!") 
+                raise ValueError(f"The field '{key}' is not compatible with the file fields!") 
         
         self.data_list.append(kwargs)
         self.write_to_file()
@@ -87,7 +87,7 @@ class FileManagement():
                 self.data_list[i][field] = new_value
                 not_updated = False
         if not_updated:
-            raise CustomerNotFoundError(f"The id {customer_id}, does not exist")
+            raise CustomerNotFoundError(f"The ID {customer_id} does not exist")
         self.write_to_file()
         
     def get_field_info(self,customer_id , field):

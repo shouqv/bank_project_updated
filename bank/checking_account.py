@@ -20,19 +20,19 @@ class CheckingAccount():
 
                 if CheckingAccount.overdrafts_count[account_id] >= 2:
                     file.update_row(account_id, "status" , "inactive")
-                    raise OverdraftLimitExceededError("You have exceeded the overdraft attempt limit, account deactivated")
+                    raise OverdraftLimitExceededError("You have exceeded the overdraft attempt limit. Account deactivated")
 
                 overdraft_limit = float(file.get_field_info(account_id , "overdraft_limit"))
                 if amount > current_balance_checking:
                     if new_balance_checking - 35 < overdraft_limit:
-                        raise OverdraftRejectedError(f"you have exceeded the balance limit of {overdraft_limit} including the fee! operation canceled")
+                        raise OverdraftRejectedError(f"You have exceeded the balance limit of {overdraft_limit}, including the fee. Operation canceled")
                         
                     else:
                         if account_id in CheckingAccount.overdrafts_count:
                             if CheckingAccount.overdrafts_count[account_id] <3:
                                 new_balance_checking -= 35
                                 # print("Overdraft! 35 fee applied.")
-                                message = "Overdraft! 35 fee applied\n"
+                                message = "Overdraft! A $35 fee has been applied\n"
                                 CheckingAccount.overdrafts_count[account_id] +=1
 
 
@@ -43,9 +43,9 @@ class CheckingAccount():
                 return message
             else:
 
-                raise AccountIsNoneError(f"Error: the checking account with id= {account_id}, have not been initated yet", "balance_checking")
+                raise AccountIsNoneError(f"Error: The checking account with ID={account_id} has not been initiated yet", "balance_checking")
         else:
-            raise InactiveAccountError(f"The account id {account_id} is inactive, please pay {current_balance_checking * -1}")
+            raise InactiveAccountError(f"The account ID {account_id} is inactive. Please pay {current_balance_checking * -1}")
 
     
     
@@ -68,7 +68,7 @@ class CheckingAccount():
             file.update_row(account_id, "balance_checking" , new_balance_checking)
             return message
         else:
-            raise AccountIsNoneError(f"Error: the checking account with id={account_id}, have not been initated yet", "balance_checking")
+            raise AccountIsNoneError(f"Error: The checking account with ID={account_id} has not been initiated yet", "balance_checking")
     
     def transfer(self,file ,  account_id,saving_account , amount):
         message = saving_account.withdraw(file,account_id, amount) +"\n"

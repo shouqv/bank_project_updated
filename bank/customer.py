@@ -19,7 +19,7 @@ class Customer():
         if str(overdraft_limit).strip() == "": #if the user have entered a space or newline
             overdraft_limit = -100.0  
         else:
-            self.customer_entered_numbers(overdraft_limit,"Please ensure to enter a valid numebr")
+            self.customer_entered_numbers(overdraft_limit,"Please ensure you enter a valid number")
             
         self.file_manager.add_row(
             account_id=account_id,
@@ -47,7 +47,7 @@ class Customer():
         } 
         
         if account not in account_map:
-            raise InvalidChoiceError(f"The option: {account}, is invalid! Try again")
+            raise InvalidChoiceError(f"The option: '{account}', is invalid. Try again")
 
         before_balance = self.get_current_balance(account_id, account)
         result = account_map[account].withdraw(self.file_manager, account_id, amount)
@@ -66,7 +66,7 @@ class Customer():
         
 
         if account not in account_map:
-            raise InvalidChoiceError(f"The option: {account}, is invalid! Try again")
+            raise InvalidChoiceError(f"The option: '{account}', is invalid. Try again")
 
         before_balance = self.get_current_balance(account_id, account)
 
@@ -80,7 +80,7 @@ class Customer():
     def transfer(self,account_id , choice, amount, from_account=None, other_customer=None):
         #
         if choice == "c" and (from_account !="checking" and from_account != "saving"): 
-            raise InvalidChoiceError(f"The account:{from_account}, is invalid! Try again")
+            raise InvalidChoiceError(f"The account: '{from_account}', is invalid. Try again")
         before_checking_balance = 0
         before_saving_balance = 0
         if choice == "a" or choice == "b":
@@ -100,10 +100,10 @@ class Customer():
                 return result
             case "c":
                 if not from_account or not other_customer:
-                    raise ValueError("the account to transfer from and the id of the other customer must be provided for this choice")
+                    raise ValueError("The account to transfer from and the ID of the other customer must be provided for this choice")
                 
                 if not self.checking_account.check_if_account_exist(self.file_manager,other_customer):
-                    raise AccountIsNoneError(f"The customer {other_customer} does not have an account, cant transfer!")
+                    raise AccountIsNoneError(f"The customer {other_customer} does not have an account. Can't transfer!")
                 
                 
                 if other_customer != account_id:
@@ -115,9 +115,9 @@ class Customer():
                     self.add_transaction(other_customer, f"Transfer {amount} from ID: {account_id}", before_other_user_balance, from_account)
                     return result
                 else:
-                    raise ValueError("You cant transfer to your account using this option, please refer back to choice:a/b")
+                    raise ValueError("You can't transfer to your own account using this option. Please use choice 'a' or 'b' instead")
             case _:
-                raise InvalidChoiceError(f"The option:{choice}, is invalid! Try again")
+                raise InvalidChoiceError(f"The option: '{choice}', is invalid. Try again")
             
                 
     def get_current_balance(self ,account_id , account ):
@@ -126,7 +126,7 @@ class Customer():
         elif account == "saving":
             return self.saving_account.get_current_saving_balance(self.file_manager ,account_id)
         else:
-            raise InvalidChoiceError(f"The option:{account}, is invalid! Try again")
+            raise InvalidChoiceError(f"The option: '{account}', is invalid. Try again")
         
     def create_account(self, account_id, field, new_balance_checking ):
         self.file_manager.update_row(account_id,field,new_balance_checking)
