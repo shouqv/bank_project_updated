@@ -42,6 +42,7 @@ try:
                         print(f"Welcome {customer.customer_greetings(account_id)}")
                         while True:
                             try:
+                                print()
                                 print("1) Withdraw  2) Deposit  3) Transfer  4) Change Overdraft Limit  5) Generate Report  6) Logout")
                                 selection = input("Choice: ")
                                 match selection:
